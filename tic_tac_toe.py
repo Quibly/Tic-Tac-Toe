@@ -42,5 +42,23 @@ def check_grid(grid):
         win = False
     return win
 
+def check_full(grid):
+    """Function checks that there are available spaces on the grid.
+       If all the spaces have been chosen then the game ends in a draw."""
+    draw = True
+    for i in range(9):
+        if grid[i-1] != 'x' and grid[i-1] != 'o':
+            draw = False
+    return draw
+
+def check_existing(grid, choice):
+    """Checks to see if the users location choice is already filled.
+       If there is already an 'x' or an 'o' in the chosen space this
+       function will return TRUE."""
+    picked = False
+    if grid[choice-1] == 'x' or grid[choice-1] == 'o':
+        picked = True
+    return picked
+
 if __name__ == "__main__":
     main()

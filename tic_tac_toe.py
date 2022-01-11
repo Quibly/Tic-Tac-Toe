@@ -7,6 +7,24 @@ def main():
     player = 'x'
     grid = [1,2,3,4,5,6,7,8,9]
     display_grid(grid)
+    # While loop will run while there isn't a winner.
+    while check_grid(grid) == False and check_full(grid) != True:
+        choice = int(input(f'{player}\'s turn to choose a square (1-9):'))
+        print()
+        # Checks that the user's choice isn't already taken
+        if check_existing(grid, choice) == False:
+            grid[choice-1] = player
+            display_grid(grid)
+            # Checks for a winning row before switching to new player assignment
+            if check_grid(grid) == False:
+                if player == 'x':
+                    player = 'o'
+                elif player == 'o':
+                    player = 'x'
+    if check_full(grid) == False:
+        print(f'Good game. {player} wins. Thanks for playing!')
+    else:
+        print(f'This game ends in a draw. All the spaces are taken.')
 
 def display_grid(grid):
     """Function will display the current grid variables."""
